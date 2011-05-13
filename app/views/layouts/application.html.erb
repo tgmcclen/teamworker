@@ -7,7 +7,7 @@
   <%= csrf_meta_tag %>
 </head>
 <body>
-  <p><% if user_signed_in? %><%= "Logged in as #{current_user.email}" %> <%= link_to("Log out", :destroy_user_session) %><% end %>
+  <p><% if user_signed_in? %><%= image_tag current_user.gravatar_url %><%= "Logged in as #{current_user.email}" %> <%= link_to("Log out", :destroy_user_session) %><% end %>
   <p class="notice"><%= notice %></p>
   <p class="alert"><%= alert %></p>
   <%= yield %>
