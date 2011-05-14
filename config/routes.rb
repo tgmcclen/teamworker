@@ -1,4 +1,10 @@
 Teamworker::Application.routes.draw do
+  resources :supplies
+
+  resources :days
+
+  resources :people
+
   get "home/index"
 
   devise_for :users

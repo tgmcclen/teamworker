@@ -1,0 +1,20 @@
+<% title "Supply" %>
+
+<p>
+  <strong>Start Date:</strong>
+  <%= @supply.start_date %>
+</p>
+<p>
+  <strong>End Date:</strong>
+  <%= @supply.end_date %>
+</p>
+<p>
+  <strong>Person:</strong>
+  <%= @supply.person_id %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_supply_path(@supply) %> |
+  <%= link_to "Destroy", @supply, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", supplies_path %>
+</p>

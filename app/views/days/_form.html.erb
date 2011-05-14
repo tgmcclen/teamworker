@@ -1,0 +1,16 @@
+<%= form_for @day do |f| %>
+  <%= f.error_messages %>
+  <p>
+    <%= f.label :date %><br />
+    <%= f.date_select :date %>
+  </p>
+  <p>
+    <%= f.label :work_day %><br />
+    <%= f.check_box :work_day %>
+  </p>
+  <p>
+    <%= f.label :holiday_name %><br />
+    <%= f.text_field :holiday_name %>
+  </p>
+  <p><%= f.submit %></p>
+<% end %>

@@ -1,0 +1,9 @@
+one:
+  date: 2011-05-14
+  work_day: false
+  holiday_name: MyString
+
+two:
+  date: 2011-05-14
+  work_day: false
+  holiday_name: MyString

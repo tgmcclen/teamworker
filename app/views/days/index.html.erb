@@ -1,0 +1,21 @@
+<% title "Days" %>
+
+<table>
+  <tr>
+    <th>Date</th>
+    <th>Work Day</th>
+    <th>Holiday Name</th>
+  </tr>
+  <% for day in @days %>
+    <tr>
+      <td><%= day.date %></td>
+      <td><%= day.work_day %></td>
+      <td><%= day.holiday_name %></td>
+      <td><%= link_to "Show", day %></td>
+      <td><%= link_to "Edit", edit_day_path(day) %></td>
+      <td><%= link_to "Destroy", day, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "New Day", new_day_path %></p>

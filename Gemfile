@@ -32,4 +32,9 @@ gem 'sqlite3'
 
 gem 'devise'
 gem 'gravtastic'
+gem 'formtastic', '~> 1.2.3'
+gem 'nifty-generators', :group => :development
+gem "mocha", :group => :test
+gem 'populator'
+gem 'faker'
 

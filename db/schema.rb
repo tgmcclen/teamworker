@@ -10,7 +10,32 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110513202058) do
+ActiveRecord::Schema.define(:version => 20110514145050) do
+
+  create_table "days", :force => true do |t|
+    t.date     "date"
+    t.boolean  "work_day"
+    t.string   "holiday_name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "people", :force => true do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "email"
+    t.string   "gravatar_email"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "supplies", :force => true do |t|
+    t.date     "start_date"
+    t.date     "end_date"
+    t.integer  "person_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", :force => true do |t|
     t.string   "email",                                 :default => "", :null => false

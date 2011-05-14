@@ -1,0 +1,21 @@
+<% title "Supplies" %>
+
+<table>
+  <tr>
+    <th>Start Date</th>
+    <th>End Date</th>
+    <th>Person</th>
+  </tr>
+  <% for supply in @supplies %>
+    <tr>
+      <td><%= supply.start_date %></td>
+      <td><%= supply.end_date %></td>
+      <td><%= supply.person_id %></td>
+      <td><%= link_to "Show", supply %></td>
+      <td><%= link_to "Edit", edit_supply_path(supply) %></td>
+      <td><%= link_to "Destroy", supply, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "New Supply", new_supply_path %></p>
