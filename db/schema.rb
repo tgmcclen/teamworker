@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110514145050) do
+ActiveRecord::Schema.define(:version => 20110517011259) do
 
   create_table "days", :force => true do |t|
     t.date     "date"
@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(:version => 20110514145050) do
     t.integer  "person_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.decimal  "fte_ratio"
   end
 
   create_table "users", :force => true do |t|
