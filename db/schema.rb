@@ -10,7 +10,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110517011259) do
+ActiveRecord::Schema.define(:version => 20110519021108) do
+
+  create_table "absences", :force => true do |t|
+    t.date     "start_date"
+    t.date     "end_date"
+    t.integer  "supply_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "days", :force => true do |t|
     t.date     "date"
