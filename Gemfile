@@ -38,5 +38,6 @@ gem "mocha", :group => :test
 gem 'populator'
 gem 'faker'
 gem 'meta_search'
-gem "meta_where"
+gem 'meta_where'
+gem 'googlecharts'
 

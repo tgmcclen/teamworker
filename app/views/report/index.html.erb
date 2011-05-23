@@ -1,0 +1,24 @@
+<h1>Reports</h1>
+<script type="text/javascript" charset="utf-8">
+  google.load("visualization", "1", {packages:["linechart", "piechart", "annotatedtimeline"]});
+  google.setOnLoadCallback(supplyOverview);
+  
+  function supplyOverview() {
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', 'Date');
+    data.addColumn('number', 'Raw Supply FTE');
+    data.addColumn('number', 'Absence FTE');
+    data.addRows(<%= @dates.size %>);
+    <% row = 0 %>
+    <% for date in @dates %>
+      data.setValue(<%= row %>, 0, '<%= date %>')
+      data.setValue(<%= row %>, 1, <%= @raw_supply_fte[row].round(0).to_s %>);
+      data.setValue(<%= row %>, 2, <%= @absence_fte[row].round(0).to_s %>);
+      <% row = row + 1 %>
+    <% end %>
+    
+    var chart = new google.visualization.LineChart(document.getElementById('supply_overview'));
+    chart.draw(data, {width: 900, height: 400, legend: 'bottom', title: 'Supply Overview'});
+  }
+</script>
+<div id="supply_overview" style="height: 400px"></div>
