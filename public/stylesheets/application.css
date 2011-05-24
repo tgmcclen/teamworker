@@ -171,3 +171,25 @@ div.menu li {
 * html #access ul li a:hover {
 	color: #fff;
 }
+
+/* =Graphs
+-------------------------------------------------------------- */
+.graph {
+	height: 400px;
+}
+/* =Tables
+-------------------------------------------------------------- */
+table {
+	border-collapse: collapse;
+}
+td {
+	border: 1px solid #CCC;
+	padding: 1px;
+}
+td.date {
+	width: 6em;
+}
+td.fte {
+	width: 5em;
+	text-align: right;
+}

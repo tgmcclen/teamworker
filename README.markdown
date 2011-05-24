@@ -24,3 +24,15 @@ Status
 ------
 
 The application is in its infancy and not ready for consumption yet.  I'll update the README file when its in working order!
+
+Ideas
+-----
+* Projects should have a budget tolerance that can be tracked against for control
+* Monthly timeboxes against a project can show how you plan to spend the budget
+* Sprint timeboxes against a project can help produce a release burndown by points
+* Project reporting has several facets:
+  * Completed points against total points per team
+  * Completed days against total days
+  * Cost of days per point per team to predict total remaining costs
+* Some timeboxes have demand that completely matches supply (i.e. project secondment, DevOps, leadership team, production support)
+* Have an unconfirmed team to capture possible project demand that is in the early stages of initiation

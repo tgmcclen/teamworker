@@ -1,9 +1,13 @@
 class DayCalc
-  attr_accessor :day_id, :date, :raw_supply_fte, :absence_fte
+  attr_accessor :day_id, :date, :raw_supply_fte, :absence_fte, :team_id
 
   def initialize
     @absence_fte = 0
     @raw_supply_fte = 0
+  end
+
+  def supply_fte
+    @raw_supply_fte - @absence_fte
   end
   
   def self.calc_raw_supply_fte(start_date = nil, end_date = nil)
@@ -12,7 +16,6 @@ class DayCalc
     # TODO increase this to cover off sum absences and then net supply
     d = Day.arel_table
     s = Supply.arel_table
-    a = Absence.arel_table
     q = d.project('days.id, days.date, sum(supplies.fte_ratio) as raw_supply_fte')
     .join(s, Arel::Nodes::OuterJoin).on(d[:date].gteq(s[:start_date]).and(d[:date].lteq(s[:end_date]).or(s[:end_date].eq(nil))))
     .where(d[:work_day].eq(true))
@@ -24,6 +27,28 @@ class DayCalc
       dc = DayCalc.new
       dc.day_id = d.id
       dc.date = d.date
+      dc.raw_supply_fte = d.raw_supply_fte unless d.raw_supply_fte.nil?
+      dc
+    end
+  end
+
+  def self.calc_raw_supply_fte_for_teams(start_date = nil, end_date = nil)
+    d = Day.arel_table
+    s = Supply.arel_table
+    t = Team.arel_table
+    q = d.project('days.id, days.date, teams.id as team_id, sum(supplies.fte_ratio) as raw_supply_fte')
+    .join(s, Arel::Nodes::OuterJoin).on(d[:date].gteq(s[:start_date]).and(d[:date].lteq(s[:end_date]).or(s[:end_date].eq(nil))))
+    .join(t).on(t[:id].eq(s[:team_id]))
+    .where(d[:work_day].eq(true))
+    .group(d[:date], t[:id])
+    .order(d[:date].asc)
+    tighten_date_range(q, start_date, end_date)
+    puts q.to_sql
+    Day.find_by_sql(q.to_sql).collect do |d|
+      dc = DayCalc.new
+      dc.day_id = d.id
+      dc.date = d.date
+      dc.team_id = d.team_id
       dc.raw_supply_fte = d.raw_supply_fte unless d.raw_supply_fte.nil?
       dc
     end

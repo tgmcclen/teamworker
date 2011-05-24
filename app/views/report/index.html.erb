@@ -17,8 +17,29 @@
       <% row = row + 1 %>
     <% end %>
     
-    var chart = new google.visualization.LineChart(document.getElementById('supply_overview'));
-    chart.draw(data, {width: 900, height: 400, legend: 'bottom', title: 'Supply Overview'});
+    var chart = new google.visualization.LineChart(document.getElementById('supply_overview_graph'));
+    chart.draw(data, {width: 900, height: 400, legend: 'bottom', title: 'Supply Overview', pointSize: 0});
   }
 </script>
-<div id="supply_overview" style="height: 400px"></div>
+<div id="supply_overview_graph" class="graph"></div>
+
+<div id="supply_overview_table">
+  <table>
+    <tr>
+      <th class="date">Date</th>
+      <th class="fte">Raw Supply FTE</th>
+      <th class="fte">Absence FTE</th>
+      <th class="fte">Supply FTE</th>
+    </tr>
+    <% row = 0 %>
+    <% for date in @dates %>
+      <tr>
+        <td class="date"><%= date %></td>
+        <td class="fte"><%= @raw_supply_fte[row].round(1).to_s %></td>
+        <td class="fte"><%= @absence_fte[row].round(1).to_s %></td>
+        <td class="fte"><%= @supply_fte[row].round(1).to_s %></td>
+      </tr>
+      <% row = row + 1 %>
+    <% end %>
+  </table>
+</div>

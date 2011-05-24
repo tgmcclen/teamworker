@@ -6,8 +6,14 @@ namespace :db do
     
     days_start_variance = 100
     days_end_variance = 365
-    [Absence, Supply, Person, Day].each(&:delete_all)
-        
+    [Absence, Supply, Team, Person, Day].each(&:delete_all)
+      
+    teams = []      
+    Team.populate 5 do |team|
+      team.name = Faker::Company.name
+      teams << team.id
+    end
+      
     Person.populate 50 do |person|
       person.first_name = Faker::Name.first_name
       person.last_name = Faker::Name.last_name
@@ -18,6 +24,7 @@ namespace :db do
           supply.end_date = (supply.start_date + 28)..(supply.start_date + days_end_variance)
           supply.end_date = [supply.end_date, nil, nil]
           supply.fte_ratio = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0.8, 0.6]
+          supply.team_id = teams
           Absence.populate 1 do |absence|
             absence.supply_id = supply.id
             if supply.end_date.nil?

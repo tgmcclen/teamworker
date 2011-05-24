@@ -1,4 +1,6 @@
 Teamworker::Application.routes.draw do
+  resources :teams
+
   get "report/index"
 
   resources :supplies

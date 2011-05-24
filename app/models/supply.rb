@@ -1,4 +1,5 @@
 class Supply < ActiveRecord::Base
-  has_one :person
+  belongs_to :person
+  belongs_to :team
   attr_accessible :start_date, :end_date, :person_id
 end
