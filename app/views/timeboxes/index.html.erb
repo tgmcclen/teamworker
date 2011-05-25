@@ -1,0 +1,21 @@
+<% title "Timeboxes" %>
+
+<table>
+  <tr>
+    <th>Start Date</th>
+    <th>End Date</th>
+    <th>Name</th>
+  </tr>
+  <% for timebox in @timeboxes %>
+    <tr>
+      <td><%= timebox.start_date %></td>
+      <td><%= timebox.end_date %></td>
+      <td><%= timebox.name %></td>
+      <td><%= link_to "Show", timebox %></td>
+      <td><%= link_to "Edit", edit_timebox_path(timebox) %></td>
+      <td><%= link_to "Destroy", timebox, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "New Timebox", new_timebox_path %></p>

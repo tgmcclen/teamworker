@@ -1,0 +1,20 @@
+<% title "Timebox" %>
+
+<p>
+  <strong>Start Date:</strong>
+  <%= @timebox.start_date %>
+</p>
+<p>
+  <strong>End Date:</strong>
+  <%= @timebox.end_date %>
+</p>
+<p>
+  <strong>Name:</strong>
+  <%= @timebox.name %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_timebox_path(@timebox) %> |
+  <%= link_to "Destroy", @timebox, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", timeboxes_path %>
+</p>

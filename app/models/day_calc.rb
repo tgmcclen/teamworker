@@ -12,8 +12,7 @@ class DayCalc
   
   def self.calc_raw_supply_fte(start_date = nil, end_date = nil)
     # AREL query - then run it throuh find_by_sql (Rails doesn't seem to properly support AREL yet!).  
-    # Once executed, the returned Days objects have a supply_fte property
-    # TODO increase this to cover off sum absences and then net supply
+    # Once executed, the returned Days objects have a raw_supply_fte property
     d = Day.arel_table
     s = Supply.arel_table
     q = d.project('days.id, days.date, sum(supplies.fte_ratio) as raw_supply_fte')

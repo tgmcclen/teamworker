@@ -1,4 +1,6 @@
 Teamworker::Application.routes.draw do
+  resources :timeboxes
+
   resources :teams
 
   get "report/index"

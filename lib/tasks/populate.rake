@@ -6,7 +6,7 @@ namespace :db do
     
     days_start_variance = 100
     days_end_variance = 365
-    [Absence, Supply, Team, Person, Day].each(&:delete_all)
+    [Absence, Supply, Team, Person, Day, Timebox].each(&:delete_all)
       
     teams = []      
     Team.populate 5 do |team|
@@ -40,11 +40,20 @@ namespace :db do
       end      
     end
     
-    day_increment = Date.today
+    day_increment = Date.today.beginning_of_month
     Day.populate days_start_variance + days_end_variance do |day|
       day.date = day_increment
       day.work_day = ![6,7].include?(day_increment.cwday)
       day_increment = day_increment + 1
     end    
+    
+    timebox_increment = Date.today.beginning_of_month
+    Timebox.populate 12 do |timebox|
+      timebox.start_date = timebox_increment
+      timebox.end_date = timebox_increment.end_of_month
+      timebox.name = timebox_increment.to_s(:year_and_month)
+      timebox_increment = timebox_increment.next_month
+    end
+    
   end
 end
